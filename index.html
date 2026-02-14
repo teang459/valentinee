@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For My Valentine 💜</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💜</text></svg>">
+    <!-- Google Fonts: Playful rounded font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Fredoka', 'sans-serif'],
+                    },
+                    colors: {
+                        romantic: {
+                            light: '#faf5ff',    // Very soft purple
+                            lavender: '#e9d5ff', // Soft lavender
+                            purple: '#a855f7',   // Main purple
+                            dark: '#4c1d95',     // Deep purple for text/borders
+                            accent: '#e879f9'    // Soft pink/purple accent
+                        }
+                    },
+                    animation: {
+                        'wiggle': 'wiggle 1s ease-in-out infinite',
+                        'float': 'float 6s ease-in-out infinite',
+                        'fade-in': 'fadeIn 0.5s ease-out forwards',
+                    },
+                    keyframes: {
+                        wiggle: {
+                            '0%, 100%': { transform: 'rotate(-3deg)' },
+                            '50%': { transform: 'rotate(3deg)' },
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        },
+                        fadeIn: {
+                            '0%': { opacity: '0', transform: 'translateY(10px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #faf5ff;
+            background-image: radial-gradient(#e9d5ff 2px, transparent 2px);
+            background-size: 30px 30px;
+            height: 100vh;
+            width: 100vw;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .cartoon-border {
+            border: 3px solid #4c1d95;
+            box-shadow: 8px 8px 0px #4c1d95;
+        }
+
+        .cartoon-btn {
+            border: 3px solid #4c1d95;
+            box-shadow: 4px 4px 0px #4c1d95;
+            transition: all 0.1s ease-in-out;
+            cursor: pointer;
+        }
+        
+        .cartoon-btn:active {
+            transform: translate(2px, 2px);
+            box-shadow: 2px 2px 0px #4c1d95;
+        }
+
+        .doodle-heart {
+            position: fixed;
+            pointer-events: none;
+            z-index: 0;
+            animation: floatUp 15s linear forwards;
+            font-size: 2rem;
+            opacity: 0.6;
+        }
+
+        @keyframes floatUp {
+            0% { transform: translateY(110vh) rotate(0deg); opacity: 0; }
+            10% { opacity: 0.8; }
+            90% { opacity: 0.8; }
+            100% { transform: translateY(-20vh) rotate(360deg); opacity: 0; }
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+        }
+
+        /* Slide Transition Classes */
+        .slide {
+            display: none; /* Hidden by default */
+            animation: fadeIn 0.6s ease-out;
+        }
+        .slide.active {
+            display: flex; /* Show active */
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            width: 100%;
+        }
+    </style>
+</head>
+<body class="text-gray-800 font-sans selection:bg-romantic-purple selection:text-white">
+
+    <!-- Background Decoration -->
+    <div class="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+        <div class="absolute top-10 left-10 animate-float text-romantic-purple opacity-40">
+            <i data-lucide="heart" class="w-24 h-24 fill-romantic-lavender"></i>
+        </div>
+        <div class="absolute bottom-20 right-10 animate-float text-romantic-dark opacity-40" style="animation-delay: 2s;">
+            <i data-lucide="stars" class="w-20 h-20 fill-romantic-accent"></i>
+        </div>
+    </div>
+
+    <!-- The Magic Card Container -->
+    <main class="relative z-10 w-full max-w-lg px-4 h-auto">
+        
+        <div id="magicCard" class="glass-card cartoon-border rounded-[2.5rem] p-6 md:p-10 text-center relative transition-all duration-500 min-h-[550px] md:min-h-[600px] flex items-center justify-center overflow-hidden">
+            
+            <!-- Slide 1: Intro -->
+            <div id="slide-intro" class="slide active">
+                <div class="inline-block bg-romantic-lavender text-romantic-dark px-4 py-2 rounded-full font-bold cartoon-border mb-8 animate-wiggle transform -rotate-2">
+                    💜 Dear Miw 💜
+                </div>
+                <h1 class="text-4xl md:text-5xl font-bold mb-6 leading-tight text-romantic-dark drop-shadow-[2px_2px_0_#e9d5ff]">
+                    Happy Valentine's Day!
+                </h1>
+                <p class="text-lg font-medium mb-10 text-gray-600 max-w-sm">
+                    I made something special for you. Are you ready Miw?
+                </p>
+                <button onclick="nextSlide('slide-intro', 'slide-letter')" class="cartoon-btn bg-romantic-purple text-white px-8 py-4 rounded-2xl font-bold text-xl hover:bg-romantic-dark transition-all">
+                    Open My Heart 💌
+                </button>
+            </div>
+
+            <!-- Slide 2: Letter -->
+            <div id="slide-letter" class="slide">
+                <i data-lucide="mail-open" class="w-16 h-16 text-romantic-purple mb-6 animate-float"></i>
+                <h2 class="text-3xl font-bold mb-6 text-romantic-dark">My Dearest,</h2>
+                <div class="bg-romantic-light p-6 rounded-2xl border-2 border-romantic-lavender w-full mb-8 text-left h-48 overflow-y-auto">
+                    <p id="typewriter-text" class="text-lg font-medium leading-relaxed text-gray-700"></p>
+                </div>
+                <button onclick="nextSlide('slide-letter', 'slide-favorites')" class="cartoon-btn bg-romantic-accent text-white px-8 py-3 rounded-xl font-bold text-lg hover:bg-romantic-purple transition-all">
+                    Continue ➜
+                </button>
+            </div>
+
+            <!-- Slide 3: Favorites -->
+            <div id="slide-favorites" class="slide">
+                <h2 class="text-3xl font-bold mb-6 text-romantic-dark">Our Happy Place 😋</h2>
+                <p class="mb-6 text-gray-600">Eating with you is my favorite hobby.</p>
+                
+                <div class="grid grid-cols-2 gap-3 w-full mb-8">
+                    <div class="bg-white p-3 rounded-xl border-2 border-romantic-lavender shadow-sm flex flex-col items-center hover:scale-105 transition-transform">
+                        <span class="text-3xl mb-1">🍲</span>
+                        <span class="text-sm font-bold text-romantic-dark">Joum Jxxn</span>
+                    </div>
+                    <div class="bg-white p-3 rounded-xl border-2 border-romantic-lavender shadow-sm flex flex-col items-center hover:scale-105 transition-transform">
+                        <span class="text-3xl mb-1">🍤</span>
+                        <span class="text-sm font-bold text-romantic-dark">Piing Koung HoiYai</span>
+                    </div>
+                    <div class="bg-white p-3 rounded-xl border-2 border-romantic-lavender shadow-sm flex flex-col items-center hover:scale-105 transition-transform">
+                        <span class="text-3xl mb-1">🥤</span>
+                        <span class="text-sm font-bold text-romantic-dark">Teadong</span>
+                    </div>
+                    <div class="bg-white p-3 rounded-xl border-2 border-romantic-lavender shadow-sm flex flex-col items-center hover:scale-105 transition-transform">
+                        <span class="text-3xl mb-1">🥘</span>
+                        <span class="text-sm font-bold text-romantic-dark">SeenDard 3 Sis Nng</span>
+                    </div>
+                </div>
+                
+                <button onclick="nextSlide('slide-favorites', 'slide-memories')" class="cartoon-btn bg-romantic-accent text-white px-8 py-3 rounded-xl font-bold text-lg hover:bg-romantic-purple transition-all">
+                    Next Memory ➜
+                </button>
+            </div>
+
+            <!-- Slide 4: Memories (Polaroids) -->
+            <div id="slide-memories" class="slide">
+                <h2 class="text-3xl font-bold mb-2 text-romantic-dark">Us 📸</h2>
+                <p class="mb-6 text-gray-600 text-sm">Every picture tells our story.</p>
+                
+                <div class="relative w-full h-80 mb-8 flex items-center justify-center">
+                    
+                    <!-- Photo 1 (Far Left) -->
+                    <div class="absolute w-40 md:w-48 bg-white p-3 pb-8 border-2 border-romantic-dark shadow-md transform -rotate-[15deg] -translate-x-20 md:-translate-x-32 translate-y-4 transition-all duration-300 hover:scale-110 hover:z-50 hover:rotate-0 cursor-pointer z-0">
+                        <div class="bg-gray-200 h-28 md:h-32 w-full overflow-hidden">
+                            <img src="/444.jpeg" class="object-cover w-full h-full">
+                        </div>
+                        <p class="text-center text-xs mt-2 font-bold text-gray-600">My First Ride</p>
+                    </div>
+
+                    <!-- Photo 2 (Left) -->
+                    <div class="absolute w-40 md:w-48 bg-white p-3 pb-8 border-2 border-romantic-dark shadow-md transform -rotate-[8deg] -translate-x-10 md:-translate-x-16 -translate-y-2 transition-all duration-300 hover:scale-110 hover:z-50 hover:rotate-0 cursor-pointer z-10">
+                        <div class="bg-gray-200 h-28 md:h-32 w-full overflow-hidden">
+                            <img src="/000.jpeg">
+                        </div>
+                        <p class="text-center text-xs mt-2 font-bold text-gray-600">D+A+T+E = Date</p>
+                    </div>
+
+                    <!-- Photo 3 (Center) -->
+                    <div class="absolute w-40 md:w-48 bg-white p-3 pb-8 border-2 border-romantic-dark shadow-md transform rotate-[2deg] translate-y-6 transition-all duration-300 hover:scale-110 hover:z-50 hover:rotate-0 cursor-pointer z-20">
+                        <div class="bg-gray-200 h-28 md:h-32 w-full overflow-hidden">
+                            <img src="/111.jpeg" class="object-cover w-full h-full">
+                        </div>
+                        <p class="text-center text-xs mt-2 font-bold text-gray-600">Her Birthday</p>
+                    </div>
+
+                    <!-- Photo 4 (Right) -->
+                    <div class="absolute w-40 md:w-48 bg-white p-3 pb-8 border-2 border-romantic-dark shadow-md transform rotate-[10deg] translate-x-10 md:translate-x-16 -translate-y-2 transition-all duration-300 hover:scale-110 hover:z-50 hover:rotate-0 cursor-pointer z-30">
+                        <div class="bg-gray-200 h-28 md:h-32 w-full overflow-hidden">
+                            <img src="/222.jpeg" class="object-cover w-full h-full">
+                        </div>
+                        <p class="text-center text-xs mt-2 font-bold text-gray-600">Our Trip</p>
+                    </div>
+
+                    <!-- Photo 5 (Far Right) -->
+                    <div class="absolute w-40 md:w-48 bg-white p-3 pb-8 border-2 border-romantic-dark shadow-md transform rotate-[18deg] translate-x-20 md:translate-x-32 translate-y-4 transition-all duration-300 hover:scale-110 hover:z-50 hover:rotate-0 cursor-pointer z-40">
+                        <div class="bg-gray-200 h-28 md:h-32 w-full overflow-hidden">
+                            <img src="/333.jpeg" class="object-cover w-full h-full">
+                        </div>
+                        <p class="text-center text-xs mt-2 font-bold text-gray-600">Forever</p>
+                    </div>
+
+                </div>
+
+                <button onclick="nextSlide('slide-memories', 'slide-question')" class="cartoon-btn bg-romantic-accent text-white px-8 py-3 rounded-xl font-bold text-lg hover:bg-romantic-purple transition-all relative z-50">
+                    One Last Thing... ➜
+                </button>
+            </div>
+
+            <!-- Slide 5: Question -->
+            <div id="slide-question" class="slide">
+                <h2 class="text-4xl md:text-5xl font-bold mb-8 text-romantic-dark drop-shadow-[2px_2px_0_#e9d5ff]">
+                    The Big Question
+                </h2>
+                <p class="text-xl font-medium mb-12 text-romantic-dark">
+                    Will You Be My Valentine Forever?
+                </p>
+                
+                <button id="btnYes" onclick="triggerSuccess()" class="cartoon-btn bg-romantic-purple text-white px-10 py-5 rounded-2xl font-bold text-2xl hover:bg-romantic-dark transition-all hover:scale-105 shadow-xl w-full relative overflow-hidden group">
+                    <span class="relative z-10 flex items-center justify-center gap-2">
+                        YES, Forever! 😍
+                    </span>
+                    <div class="absolute inset-0 bg-white/20 transform -translate-x-full group-hover:translate-x-0 transition-transform duration-300"></div>
+                </button>
+            </div>
+
+            <!-- Slide 6: Success -->
+            <div id="slide-success" class="slide">
+                 <!-- Bouncing Emojis -->
+                 <div class="text-7xl mb-6 animate-bounce relative inline-block">
+                    💐
+                    <div class="absolute inset-0 animate-pulse opacity-50 blur-[4px]">💐</div>
+                </div>
+
+                <h2 class="text-3xl font-bold mb-4 text-romantic-dark">Yay! I Love You!</h2>
+                
+                <p class="text-lg font-medium text-gray-700 mb-8 leading-relaxed">
+                    Get ready for all the Joum Jxxn, Piing Koung HoiYai, SeenDard 3 Sis Nng, and Everything Derrr! Love youuuuu💜
+                </p>
+
+                <div class="grid grid-cols-3 gap-2 mb-6">
+                    <span class="text-2xl animate-bounce" style="animation-delay: 0.1s">🍰</span>
+                    <span class="text-2xl animate-bounce" style="animation-delay: 0.2s">🥘</span>
+                    <span class="text-2xl animate-bounce" style="animation-delay: 0.3s">🍦</span>
+                </div>
+
+                <div class="inline-block px-8 py-3 bg-romantic-dark text-white rounded-xl font-bold text-lg tracking-wide cartoon-btn">
+                    Forever Yours 💜
+                </div>
+            </div>
+            
+        </div>
+    </main>
+
+    <!-- Scripts -->
+    <script>
+        lucide.createIcons();
+
+        // 1. Navigation Logic
+        function nextSlide(currentId, nextId) {
+            const current = document.getElementById(currentId);
+            const next = document.getElementById(nextId);
+            
+            // Fade out current
+            current.style.opacity = '0';
+            current.style.transform = 'scale(0.95)';
+            
+            setTimeout(() => {
+                current.classList.remove('active');
+                current.style.display = 'none'; // Ensure it's hidden
+                
+                // Prepare next slide
+                next.style.display = 'flex';
+                next.classList.add('active');
+                next.style.opacity = '0';
+                next.style.transform = 'translateY(10px)';
+                
+                // Trigger reflow
+                void next.offsetWidth;
+                
+                // Fade in next
+                next.style.opacity = '1';
+                next.style.transform = 'translateY(0) scale(1)';
+                
+                // If entering letter slide, start typing
+                if(nextId === 'slide-letter') {
+                    startTypewriter();
+                }
+
+            }, 300);
+        }
+
+        // 2. Typewriter Logic
+        const textToType = "Thank you for being the most amazing part of my life. I cherish every moment we spend together, especially when we're eating our favorite foods. You are beautiful inside and out.";
+        const typeContainer = document.getElementById('typewriter-text');
+        let charIndex = 0;
+        let isTyping = false;
+
+        function startTypewriter() {
+            if(isTyping) return;
+            isTyping = true;
+            typeContainer.innerHTML = ''; // Clear prev text
+            typeChar();
+        }
+
+        function typeChar() {
+            if (charIndex < textToType.length) {
+                typeContainer.innerHTML += textToType.charAt(charIndex);
+                charIndex++;
+                setTimeout(typeChar, 40);
+            }
+        }
+
+        // 3. Success Trigger
+        function triggerSuccess() {
+            triggerPetals();
+            
+            // Launch extra floating hearts
+            for(let i=0; i<20; i++) {
+                setTimeout(createDoodleHeart, i * 100);
+            }
+
+            nextSlide('slide-question', 'slide-success');
+        }
+
+        // 4. Custom Falling Petals Generator
+        function triggerPetals() {
+            const colors = ['#a855f7', '#c084fc', '#e879f9', '#d8b4fe', '#f0abfc'];
+            const numPetals = 60;
+            
+            for (let i = 0; i < numPetals; i++) {
+                const petal = document.createElement('div');
+                petal.style.position = 'fixed';
+                petal.style.width = (Math.random() * 12 + 10) + 'px';
+                petal.style.height = (Math.random() * 12 + 10) + 'px';
+                petal.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                petal.style.top = '-50px';
+                petal.style.left = (Math.random() * window.innerWidth) + 'px';
+                petal.style.zIndex = '50';
+                petal.style.borderRadius = '50% 0 50% 0';
+                petal.style.opacity = '0.9';
+                
+                document.body.appendChild(petal);
+
+                let opacity = 0.9;
+                let posY = -50 - (Math.random() * window.innerHeight);
+                let posX = 0;
+                let rotation = Math.random() * 360;
+                let rotSpeed = (Math.random() - 0.5) * 5;
+                let fallSpeed = Math.random() * 3 + 2;
+                
+                const animate = () => {
+                    posY += fallSpeed;
+                    posX = Math.sin(posY/50) * 30; 
+                    rotation += rotSpeed;
+                    
+                    if (posY > window.innerHeight) opacity -= 0.015;
+
+                    petal.style.transform = `translate(${posX}px, ${posY}px) rotate(${rotation}deg)`;
+                    petal.style.opacity = opacity;
+
+                    if (opacity > 0) requestAnimationFrame(animate);
+                    else petal.remove();
+                }
+                requestAnimationFrame(animate);
+            }
+        }
+
+        // 5. Floating Background Doodle Hearts
+        function createDoodleHeart() {
+            const heart = document.createElement('div');
+            const hearts = ['💜', '💖', '✨', '💐', '🧁'];
+            heart.innerText = hearts[Math.floor(Math.random() * hearts.length)];
+            heart.className = 'doodle-heart';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.zIndex = '0';
+            
+            document.body.appendChild(heart);
+            setTimeout(() => heart.remove(), 15000);
+        }
+        
+        setInterval(createDoodleHeart, 2000);
+        for(let i=0; i<5; i++) createDoodleHeart();
+
+    </script>
+</body>
+</html>
